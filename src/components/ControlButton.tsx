@@ -12,11 +12,11 @@ type Props = {
     export function ControlButton({ label, onPress, color = '#2196F3', disabled = false, style }: Props) {
     return (
         <TouchableOpacity
-        style={[styles.btn, { backgroundColor: disabled ? '#555' : color }, style]}
-        onPress={onPress}
-        disabled={disabled}
-        activeOpacity={0.7}>
-        <Text style={styles.label}>{label}</Text>
+            style={[styles.btn, { backgroundColor: disabled ? '#555' : color }, style]}
+            onPress={onPress}
+            disabled={disabled}
+            activeOpacity={0.7}>
+            <Text style={styles.label}>{label}</Text>
         </TouchableOpacity>
     );
     }
