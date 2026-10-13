@@ -5,19 +5,16 @@ export type Command = MotorCommand | string;
 
 export type SequenceStep = {
     command: string;
-    duration: number; // segundos
-    speed: number;
+    duration: number; 
+    speed: number;    
 };
 
 export async function sendCommand(command: Command, speed?: number): Promise<string> {
     const speedParam = speed !== undefined ? `&speed=${speed}` : '';
-    const response = await fetch(`${ESP32_BASE_URL}/cmd?action=${command}${speedParam}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
+    const response = await fetch(`${ESP32_BASE_URL}/cmd?action=${command}${speedParam}`);
     if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
     return response.text();
-    }
+}
 
 export async function sendSequence(steps: SequenceStep[]): Promise<string> {
     const response = await fetch(`${ESP32_BASE_URL}/sequence`, {
@@ -27,10 +24,10 @@ export async function sendSequence(steps: SequenceStep[]): Promise<string> {
     });
     if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
     return response.text();
-    }
+}
 
 export async function getStatus(): Promise<Record<string, unknown>> {
     const response = await fetch(`${ESP32_BASE_URL}/status`);
     if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
     return response.json();
-    }
+}
