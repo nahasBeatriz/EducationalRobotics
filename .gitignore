@@ -73,3 +73,13 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Chaves e certificados
+*.pem
+*.key
+*.crt

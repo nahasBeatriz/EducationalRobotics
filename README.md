@@ -1,50 +1,43 @@
-# Getting Started
+# Iniciar o Aplicativo
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 1: Iniciar o Metro
 
-## Step 1: Start Metro
+Para habilitar o aplicativo a funcnionar em modo Debug, é preciso iniciar o `Metro`, uma ferramenta de `JavaScript` para `React Native`.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
+Para iniciar o `dev server` do **Metro**, o seguinte comando deve ser executado no terminal base do projeto:
 
 ```sh
-# Using npm
 npm start
 ```
 
-## Step 2: Build and run your app
+## 2: Build e Run do Aplicativo
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+Com o **Metro** operando, abra um novo terminal/janela na base do projeto e execute o seguinte comando para construir o Debug em um Celular de acordo com o sistema operacional:
 
 ### Android
 
 ```sh
-# Using npm
 npm run android
 ```
 
 ### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+Para **IOS**, instalar as dependências `CocoaPods`.
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+> A primeira vez que criar um novo projeto, execute o `Ruby bundler` para instalar o **CocoaPods**:
 
 ```sh
 bundle install
 ```
 
-Then, and every time you update your native dependencies, run:
+> Para cada alteração/mudança das dependências do projeto, executar antes de tentar colocar em funcionamento:
 
 ```sh
 bundle exec pod install
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Para então:
 
 ```sh
-# Using npm
 npm run ios
 ```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
