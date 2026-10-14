@@ -51,7 +51,7 @@ export function PreviewModal({ visible, queue, onClose }: Props) {
                 </View>
                 ))}
                 {step >= queue.length && step > -1 && (
-                <Text style={s.done}>✓ Concluído</Text>
+                <Text style={s.done}>Concluído</Text>
                 )}
             </View>
 
@@ -66,17 +66,17 @@ export function PreviewModal({ visible, queue, onClose }: Props) {
 
 const s = StyleSheet.create({
     overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'center', alignItems: 'center' },
-    box: { backgroundColor: '#1E293B', borderRadius: 20, padding: 22, width: '90%',
+    box: { backgroundColor: '#E3E3E3', borderRadius: 20, padding: 22, width: '90%',
                     alignItems: 'center', gap: 14 },
-    title: { fontSize: 17, fontWeight: '700', color: '#F1F5F9' },
+    title: { fontSize: 17, fontWeight: '700', color: '#080808' },
     pills:{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, justifyContent: 'center' },
     pill: { flexDirection: 'row', alignItems: 'center', gap: 4,
                     paddingHorizontal: 10, paddingVertical: 5, borderRadius: 16 },
     pillActive: { transform: [{ scale: 1.1 }] },
     pillDim: { opacity: 0.4 },
-    pillText: { color: '#fff', fontWeight: '600', fontSize: 12 },
+    pillText: { color: '#080808', fontWeight: '600', fontSize: 12 },
     pillDur: { color: 'rgba(255,255,255,0.8)', fontSize: 11 },
-    done: { color: '#4ADE80', fontWeight: '700', fontSize: 14, marginTop: 4, width: '100%', textAlign: 'center' },
-    closeBtn: { backgroundColor: '#334155', paddingHorizontal: 28, paddingVertical: 10, borderRadius: 10 },
-    closeBtnText: { color: '#F1F5F9', fontWeight: '600' },
+    done: { color: '#15bb52', fontWeight: '700', fontSize: 14, marginTop: 4, width: '100%', textAlign: 'center' },
+    closeBtn: { backgroundColor: '#BBB9B2', paddingHorizontal: 28, paddingVertical: 10, borderRadius: 10 },
+    closeBtnText: { color: '#080808', fontWeight: '600' },
 });
