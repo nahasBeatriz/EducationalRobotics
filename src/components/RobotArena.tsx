@@ -68,5 +68,5 @@ const s = StyleSheet.create({
             borderLeftColor: 'transparent', borderRightColor: 'transparent',
             borderBottomColor: 'rgba(255,255,255,0.9)' },
     arenaLabel: { position: 'absolute', bottom: 6, left: 0, right: 0,
-            textAlign: 'center', color: '#475569', fontSize: 10 },
+            textAlign: 'center', color: '#080808', fontSize: 10 },
 });
