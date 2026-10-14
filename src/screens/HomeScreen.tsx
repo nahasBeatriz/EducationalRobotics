@@ -122,7 +122,7 @@ const s = StyleSheet.create({
     header: { marginBottom: 4 },
 
     sliderCard: { backgroundColor: '#BBB9B2', borderRadius: 14, padding: 14, gap: 4 },
-    sliderLabel: { color: '#000000', fontSize: 14 },
+    sliderLabel: { color: '#080808', fontSize: 14 },
     slider: { width: '100%' },
 
     actionRow: { flexDirection: 'row', gap: 10 },
