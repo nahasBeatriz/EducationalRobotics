@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import {
-    View, Text, TouchableOpacity, StyleSheet,
-    ScrollView, SafeAreaView,
-} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet,ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Slider from '@react-native-community/slider';
 import { useEsp32 } from '../hooks/useEsp32';
 import { useConnection } from '../hooks/useConnection';
@@ -62,16 +60,16 @@ export default function HomeScreen() {
                 step={1}
                 value={speedPct}
                 onValueChange={setSpeedPct}
-                minimumTrackTintColor="#60A5FA"
-                maximumTrackTintColor="#374151"
-                thumbTintColor="#60A5FA"
+                minimumTrackTintColor="#807E79"
+                maximumTrackTintColor="#8b8982"
+                thumbTintColor="#6e6d69"
             />
             </View>
 
             {/* Ações */}
             <View style={s.actionRow}>
             <TouchableOpacity
-                style={[s.actionBtn, { backgroundColor: '#EF4444' }]}
+                style={[s.actionBtn, { backgroundColor: '#e02a2a' }]}
                 onPress={clearQueue}
             >
                 <Text style={s.actionText}>Apagar</Text>
@@ -85,7 +83,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
             <TouchableOpacity
                 style={[s.actionBtn, {
-                backgroundColor: '#22C55E',
+                backgroundColor: '#15bb52',
                 opacity: loading || queue.length === 0 ? 0.45 : 1,
                 }]}
                 onPress={sendQueue}
@@ -119,18 +117,18 @@ export default function HomeScreen() {
 }
 
 const s = StyleSheet.create({
-    safe: { flex: 1, backgroundColor: '#0F172A' },
-    container: { padding: 18, gap: 10, paddingBottom: 40 },
+    safe: { flex: 1, backgroundColor: '#E3E3E3' },
+    container: { padding: 18, gap: 10, paddingBottom: 40, paddingTop: 40 },
     header: { marginBottom: 4 },
 
-    sliderCard: { backgroundColor: '#1E293B', borderRadius: 14, padding: 14, gap: 4 },
-    sliderLabel: { color: '#CBD5E1', fontSize: 14 },
+    sliderCard: { backgroundColor: '#BBB9B2', borderRadius: 14, padding: 14, gap: 4 },
+    sliderLabel: { color: '#000000', fontSize: 14 },
     slider: { width: '100%' },
 
     actionRow: { flexDirection: 'row', gap: 10 },
     actionBtn: { flex: 1, paddingVertical: 13, borderRadius: 14, alignItems: 'center' },
-    actionText: { color: '#fff', fontWeight: '700', fontSize: 15 },
+    actionText: { color: '#080808', fontWeight: '700', fontSize: 15 },
 
     error: { color: '#F87171', fontSize: 13, textAlign: 'center' },
-    queueBox: { backgroundColor: '#1E293B', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 300 },
+    queueBox: { backgroundColor: '#BBB9B2', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 300 },
 });
