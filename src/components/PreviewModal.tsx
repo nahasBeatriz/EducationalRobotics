@@ -75,7 +75,7 @@ const s = StyleSheet.create({
     pillActive: { transform: [{ scale: 1.1 }] },
     pillDim: { opacity: 0.4 },
     pillText: { color: '#080808', fontWeight: '600', fontSize: 12 },
-    pillDur: { color: 'rgba(255,255,255,0.8)', fontSize: 11 },
+    pillDur: { color: '#080808', fontSize: 11 },
     done: { color: '#15bb52', fontWeight: '700', fontSize: 14, marginTop: 4, width: '100%', textAlign: 'center' },
     closeBtn: { backgroundColor: '#BBB9B2', paddingHorizontal: 28, paddingVertical: 10, borderRadius: 10 },
     closeBtnText: { color: '#080808', fontWeight: '600' },
