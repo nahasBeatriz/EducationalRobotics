@@ -20,9 +20,9 @@ export function RobotArena({ queue, currentStep }: Props) {
     for (let i = 0; i <= currentStep && i < queue.length; i++) {
         const { command, duration } = queue[i];
         const d = Math.max(duration, 1);
-        if (command === 'frente')   y = Math.max(0, y - STEP_PX * d);
-        if (command === 'tras')     y = Math.min(ARENA - R, y + STEP_PX * d);
-        if (command === 'direita')  angleDeg += 45 * d;
+        if (command === 'frente') y = Math.max(0, y - STEP_PX * d);
+        if (command === 'tras') y = Math.min(ARENA - R, y + STEP_PX * d);
+        if (command === 'direita') angleDeg += 45 * d;
         if (command === 'esquerda') angleDeg -= 45 * d;
         // 'parar' não altera posição
     }
@@ -58,9 +58,9 @@ export function RobotArena({ queue, currentStep }: Props) {
 }
 
 const s = StyleSheet.create({
-    arena: { borderRadius: 12, backgroundColor: '#0F172A', overflow: 'hidden', position: 'relative' },
-    gridH: { position: 'absolute', top: '50%', left: 0, right: 0, height: 1, backgroundColor: '#1E293B' },
-    gridV: { position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, backgroundColor: '#1E293B' },
+    arena: { borderRadius: 12, backgroundColor: '#BBB9B2', overflow: 'hidden', position: 'relative' },
+    gridH: { position: 'absolute', top: '50%', left: 0, right: 0, height: 1, backgroundColor: '#807E79' },
+    gridV: { position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, backgroundColor: '#807E79' },
     robot: { position: 'absolute', borderRadius: 6, justifyContent: 'flex-start',
             alignItems: 'center', paddingTop: 2 },
     arrow: { width: 0, height: 0,
