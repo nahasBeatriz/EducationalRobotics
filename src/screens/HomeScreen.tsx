@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet,ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Slider from '@react-native-community/slider';
 import { useEsp32 } from '../hooks/useEsp32';
@@ -9,8 +9,14 @@ import { ConnectionBadge } from '../components/ConnectionBadge';
 import { CommandRow } from '../components/CommandRow';
 import { QueueList } from '../components/QueueList';
 import { PreviewModal } from '../components/PreviewModal';
+import { MusicStep } from '../types';
 
-export default function HomeScreen() {
+type Props = {
+    musicQueue: MusicStep[];
+    onOpenDrawer: () => void;
+};
+
+export default function HomeScreen({ musicQueue, onOpenDrawer }: Props) {
     const {
         loading, error,
         speedPct, setSpeedPct,
@@ -26,20 +32,21 @@ export default function HomeScreen() {
 
     const changeDuration = (command: string, delta: number) =>
         setDurations(prev => ({
-        ...prev,
-        [command]: Math.max(1, Math.min(60, (prev[command] ?? 1) + delta)),
+            ...prev,
+            [command]: Math.max(1, Math.min(60, (prev[command] ?? 1) + delta)),
         }));
 
     return (
         <SafeAreaView style={s.safe}>
         <ScrollView contentContainerStyle={s.container} keyboardShouldPersistTaps="handled">
 
-            {/* Status de conexão */}
             <View style={s.header}>
+            <TouchableOpacity onPress={onOpenDrawer} style={s.menuBtn}>
+                <Text style={s.menuIcon}>☰</Text>
+            </TouchableOpacity>
             <ConnectionBadge status={connectionStatus} />
             </View>
 
-            {/* Linhas de comando — todas com temporizador */}
             {COMMANDS.map(cmd => (
             <CommandRow
                 key={cmd.command}
@@ -50,7 +57,6 @@ export default function HomeScreen() {
             />
             ))}
 
-            {/* Velocidade em % */}
             <View style={s.sliderCard}>
             <Text style={s.sliderLabel}>Velocidade: {speedPct}%</Text>
             <Slider
@@ -66,7 +72,14 @@ export default function HomeScreen() {
             />
             </View>
 
-            {/* Ações */}
+            {musicQueue.length > 0 && (
+            <View style={s.musicBadge}>
+                <Text style={s.musicBadgeText}>
+                🎵 {musicQueue.length} ton{musicQueue.length > 1 ? 's' : ''} configurado{musicQueue.length > 1 ? 's' : ''}
+                </Text>
+            </View>
+            )}
+
             <View style={s.actionRow}>
             <TouchableOpacity
                 style={[s.actionBtn, { backgroundColor: '#e02a2a' }]}
@@ -86,7 +99,7 @@ export default function HomeScreen() {
                 backgroundColor: '#15bb52',
                 opacity: loading || queue.length === 0 ? 0.45 : 1,
                 }]}
-                onPress={sendQueue}
+                onPress={() => sendQueue(musicQueue)}
                 disabled={loading || queue.length === 0}
             >
                 <Text style={s.actionText}>{loading ? '...' : 'Enviar'}</Text>
@@ -95,7 +108,6 @@ export default function HomeScreen() {
 
             {error ? <Text style={s.error}>{error}</Text> : null}
 
-            {/* Fila */}
             <View style={s.queueBox}>
             <QueueList
                 queue={queue}
@@ -119,16 +131,17 @@ export default function HomeScreen() {
 const s = StyleSheet.create({
     safe: { flex: 1, backgroundColor: '#E3E3E3' },
     container: { padding: 18, gap: 10, paddingBottom: 40, paddingTop: 40 },
-    header: { marginBottom: 4 },
-
+    header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
+    menuBtn: { padding: 6 },
+    menuIcon: { fontSize: 22, color: '#333' },
+    musicBadge: { backgroundColor: '#C8E6C9', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 6, alignSelf: 'flex-start' },
+    musicBadgeText: { color: '#2E7D32', fontSize: 13, fontWeight: '600' },
     sliderCard: { backgroundColor: '#BBB9B2', borderRadius: 14, padding: 14, gap: 4 },
     sliderLabel: { color: '#080808', fontSize: 14 },
     slider: { width: '100%' },
-
     actionRow: { flexDirection: 'row', gap: 10 },
     actionBtn: { flex: 1, paddingVertical: 13, borderRadius: 14, alignItems: 'center' },
     actionText: { color: '#080808', fontWeight: '700', fontSize: 15 },
-
     error: { color: '#F87171', fontSize: 13, textAlign: 'center' },
     queueBox: { backgroundColor: '#BBB9B2', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 300 },
 });
