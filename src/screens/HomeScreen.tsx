@@ -12,11 +12,11 @@ import { PreviewModal } from '../components/PreviewModal';
 import { MusicStep } from '../types';
 
 type Props = {
-    musicQueue: MusicStep[];
+    musicQueue?: MusicStep[];
     onOpenDrawer: () => void;
 };
 
-export default function HomeScreen({ musicQueue, onOpenDrawer }: Props) {
+export default function HomeScreen({ musicQueue = [], onOpenDrawer }: Props) {
     const {
         loading, error,
         speedPct, setSpeedPct,
@@ -41,10 +41,10 @@ export default function HomeScreen({ musicQueue, onOpenDrawer }: Props) {
         <ScrollView contentContainerStyle={s.container} keyboardShouldPersistTaps="handled">
 
             <View style={s.header}>
-            <TouchableOpacity onPress={onOpenDrawer} style={s.menuBtn}>
-                <Text style={s.menuIcon}>☰</Text>
-            </TouchableOpacity>
-            <ConnectionBadge status={connectionStatus} />
+                <TouchableOpacity onPress={onOpenDrawer} style={s.menuBtn}>
+                    <Text style={s.menuIcon}>☰</Text>
+                </TouchableOpacity>
+                <ConnectionBadge status={connectionStatus} />
             </View>
 
             {COMMANDS.map(cmd => (
