@@ -5,8 +5,14 @@ export type Command = MotorCommand | string;
 
 export type SequenceStep = {
     command: string;
+    duration: number;
+    speed: number;
+};
+
+export type MusicNote = {
+    note: string;
+    frequency: number;
     duration: number; 
-    speed: number;    
 };
 
 export async function sendCommand(command: Command, speed?: number): Promise<string> {
@@ -16,11 +22,16 @@ export async function sendCommand(command: Command, speed?: number): Promise<str
     return response.text();
 }
 
-export async function sendSequence(steps: SequenceStep[]): Promise<string> {
+export async function sendSequence(
+    steps: SequenceStep[],
+    music?: MusicNote[],
+): Promise<string> {
+    const body: Record<string, unknown> = { steps };
+    if (music && music.length > 0) body.music = music;
     const response = await fetch(`${ESP32_BASE_URL}/sequence`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ steps }),
+        body: JSON.stringify(body),
     });
     if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
     return response.text();

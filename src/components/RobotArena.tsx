@@ -58,9 +58,9 @@ export function RobotArena({ queue, currentStep }: Props) {
 }
 
 const s = StyleSheet.create({
-    arena: { borderRadius: 12, backgroundColor: '#BBB9B2', overflow: 'hidden', position: 'relative' },
-    gridH: { position: 'absolute', top: '50%', left: 0, right: 0, height: 1, backgroundColor: '#807E79' },
-    gridV: { position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, backgroundColor: '#807E79' },
+    arena: { borderRadius: 12, backgroundColor: '#800080', overflow: 'hidden', position: 'relative' },
+    gridH: { position: 'absolute', top: '50%', left: 0, right: 0, height: 1, backgroundColor: '#A90072' },
+    gridV: { position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, backgroundColor: '#A90072' },
     robot: { position: 'absolute', borderRadius: 6, justifyContent: 'flex-start',
             alignItems: 'center', paddingTop: 2 },
     arrow: { width: 0, height: 0,
@@ -68,5 +68,5 @@ const s = StyleSheet.create({
             borderLeftColor: 'transparent', borderRightColor: 'transparent',
             borderBottomColor: 'rgba(255,255,255,0.9)' },
     arenaLabel: { position: 'absolute', bottom: 6, left: 0, right: 0,
-            textAlign: 'center', color: '#080808', fontSize: 10 },
+            textAlign: 'center', color: '#ffffff', fontSize: 10 },
 });
