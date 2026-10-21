@@ -17,7 +17,7 @@ export function QueueList({ queue, onRemove, onMoveUp, onMoveDown }: Props) {
     const handlePress = (id: string) => {
         const now = Date.now();
         const last = lastTapRef.current[id] ?? 0;
-        if (now - last < 350) {
+        if (now - last < 200) {
         // Duplo toque — apaga
         onRemove(id);
         if (reorderingId === id) setReorderingId(null);
@@ -52,8 +52,7 @@ export function QueueList({ queue, onRemove, onMoveUp, onMoveDown }: Props) {
                     onPress={() => handlePress(item.id)}
                     onLongPress={() => handleLongPress(item.id)}
                     delayLongPress={3000}
-                    activeOpacity={0.8}
-                >
+                    activeOpacity={0.8}>
                     <View style={[s.item, isReordering && { borderColor: color, borderWidth: 2 }]}>
                     <View style={[s.colorBar, { backgroundColor: color }]} />
 
@@ -63,7 +62,7 @@ export function QueueList({ queue, onRemove, onMoveUp, onMoveDown }: Props) {
                     </View>
 
                     {!isReordering && (
-                        <Text style={s.hint}>2× apaga · 3s move</Text>
+                        <Text style={s.hint}>2× apaga · 2s move</Text>
                     )}
 
                     {isReordering && (
@@ -71,15 +70,13 @@ export function QueueList({ queue, onRemove, onMoveUp, onMoveDown }: Props) {
                         <TouchableOpacity
                             style={[s.arrowBtn, index === 0 && s.disabled]}
                             onPress={() => onMoveUp(item.id)}
-                            disabled={index === 0}
-                        >
+                            disabled={index === 0}>
                             <Text style={s.arrowText}>↑</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={[s.arrowBtn, index === queue.length - 1 && s.disabled]}
                             onPress={() => onMoveDown(item.id)}
-                            disabled={index === queue.length - 1}
-                        >
+                            disabled={index === queue.length - 1}>
                             <Text style={s.arrowText}>↓</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={s.okBtn} onPress={() => setReorderingId(null)}>
@@ -98,22 +95,22 @@ export function QueueList({ queue, onRemove, onMoveUp, onMoveDown }: Props) {
 
 const s = StyleSheet.create({
     empty: { padding: 16, alignItems: 'center' },
-    emptyText: { color: '#1d1d1dd5', fontSize: 13, textAlign: 'center' },
+    emptyText: { color: '#ffffff81', fontSize: 13, textAlign: 'center' },
     list: { gap: 6 },
-    item: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#a5a4a0',
+    item: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#800080',
             borderRadius: 12, overflow: 'hidden', minHeight: 48,
             borderColor: 'transparent', borderWidth: 2 },
     colorBar: { width: 8, alignSelf: 'stretch' },
     content: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 12 },
-    label: { color: '#080808', fontWeight: '600', fontSize: 14, flex: 1 },
-    dur: { color: '#080808', fontSize: 13, fontWeight: '600' },
-    hint: { color: '#334155', fontSize: 10, paddingRight: 10 },
+    label: { color: '#ffffff', fontWeight: '600', fontSize: 14, flex: 1 },
+    dur: { color: '#ffffff', fontSize: 13, fontWeight: '600' },
+    hint: { color: '#ffffff81', fontSize: 10, paddingRight: 10 },
     arrows: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingRight: 8 },
-    arrowBtn: { width: 30, height: 30, borderRadius: 15, backgroundColor: '#807E79',
+    arrowBtn: { width: 30, height: 30, borderRadius: 15, backgroundColor: '#A90072',
             justifyContent: 'center', alignItems: 'center' },
     disabled: { opacity: 0.3 },
-    arrowText: { color: '#080808', fontSize: 16, fontWeight: '700' },
-    okBtn: { paddingHorizontal: 8, paddingVertical: 4, backgroundColor: '#5a83f7', borderRadius: 8 },
-    okText: { color: '#080808', fontSize: 12, fontWeight: '700' },
+    arrowText: { color: '#ffffff', fontSize: 16, fontWeight: '700' },
+    okBtn: { paddingHorizontal: 8, paddingVertical: 4, backgroundColor: '#D50048', borderRadius: 8 },
+    okText: { color: '#ffffff', fontSize: 12, fontWeight: '700' },
     scroll: { flexGrow: 0 },
 });

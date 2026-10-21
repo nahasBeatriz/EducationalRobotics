@@ -54,8 +54,7 @@ export default function MotionScreen({ musicQueue = [], onOpenDrawer }: Props) {
                     cmd={cmd}
                     duration={durations[cmd.command] ?? 1}
                     onAdd={() => addToQueue(cmd.command, cmd.label, durations[cmd.command] ?? 1)}
-                    onChangeDuration={delta => changeDuration(cmd.command, delta)}
-                />
+                    onChangeDuration={delta => changeDuration(cmd.command, delta)}/>
             ))}
 
             <View style={s.sliderCard}>
@@ -67,42 +66,38 @@ export default function MotionScreen({ musicQueue = [], onOpenDrawer }: Props) {
                     step={1}
                     value={speedPct}
                     onValueChange={setSpeedPct}
-                    minimumTrackTintColor="#807E79"
-                    maximumTrackTintColor="#8b8982"
-                    thumbTintColor="#6e6d69"
-                />
+                    minimumTrackTintColor="#800080"
+                    maximumTrackTintColor="#800080"
+                    thumbTintColor="#800080"/>
             </View>
 
             {musicQueue.length > 0 && (
                 <View style={s.musicBadge}>
                     <Text style={s.musicBadgeText}>
-                        🎵 {musicQueue.length} tom{musicQueue.length > 1 ? 's' : ''} configurado{musicQueue.length > 1 ? 's' : ''}
+                        {musicQueue.length} tom{musicQueue.length > 1 ? 's' : ''} configurado{musicQueue.length > 1 ? 's' : ''}
                     </Text>
                 </View>
             )}
 
             <View style={s.actionRow}>
                 <TouchableOpacity
-                    style={[s.actionBtn, { backgroundColor: '#e02a2a' }]}
-                    onPress={clearQueue}
-                >
+                    style={[s.actionBtn, { backgroundColor: '#cc2626' }]}
+                    onPress={clearQueue}>
                     <Text style={s.actionText}>Apagar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={[s.actionBtn, { backgroundColor: '#EAB308', opacity: queue.length === 0 ? 0.45 : 1 }]}
+                    style={[s.actionBtn, { backgroundColor: '#e4b21b', opacity: queue.length === 0 ? 0.45 : 1 }]}
                     onPress={() => setShowPreview(true)}
-                    disabled={queue.length === 0}
-                >
+                    disabled={queue.length === 0}>
                     <Text style={s.actionText}>Testar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[s.actionBtn, {
-                        backgroundColor: '#15bb52',
+                        backgroundColor: '#278124',
                         opacity: loading || queue.length === 0 ? 0.45 : 1,
                     }]}
                     onPress={() => sendQueue(musicQueue)}
-                    disabled={loading || queue.length === 0}
-                >
+                    disabled={loading || queue.length === 0}>
                     <Text style={s.actionText}>{loading ? '...' : 'Enviar'}</Text>
                 </TouchableOpacity>
             </View>
@@ -114,8 +109,7 @@ export default function MotionScreen({ musicQueue = [], onOpenDrawer }: Props) {
                     queue={queue}
                     onRemove={removeItem}
                     onMoveUp={id => moveItem(id, 'up')}
-                    onMoveDown={id => moveItem(id, 'down')}
-                />
+                    onMoveDown={id => moveItem(id, 'down')}/>
             </View>
 
         </ScrollView>
@@ -123,27 +117,26 @@ export default function MotionScreen({ musicQueue = [], onOpenDrawer }: Props) {
         <PreviewModal
             visible={showPreview}
             queue={queue}
-            onClose={() => setShowPreview(false)}
-        />
+            onClose={() => setShowPreview(false)}/>
         </SafeAreaView>
     );
 }
 
 const s = StyleSheet.create({
-    safe: { flex: 1, backgroundColor: '#E3E3E3' },
+    safe: { flex: 1, backgroundColor: '#2A0048' },
     container: { padding: 18, gap: 10, paddingBottom: 40, paddingTop: 40 },
     header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
     menuBtn: { padding: 6 },
-    menuIcon: { fontSize: 22, color: '#333' },
-    title: { flex: 1, fontSize: 18, fontWeight: '700', color: '#111' },
+    menuIcon: { fontSize: 22, color: '#ffffff' },
+    title: { flex: 1, fontSize: 18, fontWeight: '700', color: '#ffffff' },
     musicBadge: { backgroundColor: '#C8E6C9', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 6, alignSelf: 'flex-start' },
     musicBadgeText: { color: '#2E7D32', fontSize: 13, fontWeight: '600' },
-    sliderCard: { backgroundColor: '#BBB9B2', borderRadius: 14, padding: 14, gap: 4 },
-    sliderLabel: { color: '#080808', fontSize: 14 },
+    sliderCard: { backgroundColor: '#560072', borderRadius: 14, padding: 14, gap: 4 },
+    sliderLabel: { color: '#ffffff', fontSize: 14 },
     slider: { width: '100%' },
     actionRow: { flexDirection: 'row', gap: 10 },
     actionBtn: { flex: 1, paddingVertical: 13, borderRadius: 14, alignItems: 'center' },
-    actionText: { color: '#080808', fontWeight: '700', fontSize: 15 },
+    actionText: { color: '#ffffff', fontWeight: '700', fontSize: 15 },
     error: { color: '#F87171', fontSize: 13, textAlign: 'center' },
-    queueBox: { backgroundColor: '#BBB9B2', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 300 },
+    queueBox: { backgroundColor: '#560072', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 300 },
 });
