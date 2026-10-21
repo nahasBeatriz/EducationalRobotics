@@ -38,14 +38,11 @@ export function PreviewModal({ visible, queue, onClose }: Props) {
                     <Text style={s.title}>Prévia dos Comandos</Text>
 
                     {/* Imagem grande do comando atual */}
-                    <View style={[s.imgBox, { backgroundColor: current ? CMD_COLORS[current.command] : '#333' }]}>
+                    <View style={s.imgBox}>
                         {current ? (
-                            <>
-                                <Image source={CMD_IMAGE[current.command]} style={s.cmdImage} resizeMode="contain" />
-                                <Text style={s.cmdLabel}>{current.label} · {current.duration}s</Text>
-                            </>
+                            <Image source={CMD_IMAGE[current.command]} style={s.cmdImage} resizeMode="contain" />
                         ) : step >= queue.length ? (
-                            <Text style={s.done}>Concluído</Text>
+                            <Text style={s.done}>Concluído ✓</Text>
                         ) : (
                             <Text style={s.waiting}>Aguardando...</Text>
                         )}
@@ -79,7 +76,19 @@ const s = StyleSheet.create({
     overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.8)', justifyContent: 'center', alignItems: 'center' },
     box: { backgroundColor: '#2A0048', borderRadius: 20, padding: 22, width: '90%', alignItems: 'center', gap: 14 },
     title: { fontSize: 17, fontWeight: '700', color: '#ffffff' },
-    imgBox: { width: 180, height: 180, borderRadius: 20, backgroundColor: '#2A0048', justifyContent: 'center', alignItems: 'center', gap: 8 },
+    imgBox: {
+        width: 180,
+        height: 180,
+        borderRadius: 24,
+        backgroundColor: '#560072',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+        shadowColor: '#000',
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+        elevation: 6,
+    },
     cmdImage: { width: 120, height: 120 },
     cmdLabel: { color: '#fff', fontWeight: '700', fontSize: 15 },
     done: { color: '#4CAF50', fontWeight: '700', fontSize: 18 },
