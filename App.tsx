@@ -1,40 +1,81 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { useState, useRef } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
 
-const Drawer = createDrawerNavigator();
+const DRAWER_WIDTH = 260;
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
-function BuzzerScreen() {
+function DrawerContent({ onClose }: { onClose: () => void }) {
   return (
-    <View style={styles.placeholder}>
-      <Text style={styles.placeholderText}>Configuração do Buzzer</Text>
+    <View style={styles.drawer}>
+      <Text style={styles.drawerTitle}>Menu</Text>
+      <TouchableOpacity style={styles.drawerItem} onPress={onClose}>
+        <Text style={styles.drawerItemText}>Home</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.drawerItem} onPress={onClose}>
+        <Text style={styles.drawerItemText}>Buzzer</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-function HomeWithDrawer({ navigation }: any) {
-  return (
-    <HomeScreen
-      musicQueue={[]}
-      onOpenDrawer={() => navigation.openDrawer()}
-    />
-  );
-}
-
 export default function App() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const translateX = useRef(new Animated.Value(-DRAWER_WIDTH)).current;
+
+  const openDrawer = () => {
+    setDrawerOpen(true);
+    Animated.timing(translateX, {
+      toValue: 0,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const closeDrawer = () => {
+    Animated.timing(translateX, {
+      toValue: -DRAWER_WIDTH,
+      duration: 200,
+      useNativeDriver: true,
+    }).start(() => setDrawerOpen(false));
+  };
+
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeWithDrawer} options={{ headerShown: false }} />
-        <Drawer.Screen name="Buzzer" component={BuzzerScreen} options={{ title: 'Buzzer' }} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <View style={styles.root}>
+      <HomeScreen musicQueue={[]} onOpenDrawer={openDrawer} />
+
+      {drawerOpen && (
+        <TouchableWithoutFeedback onPress={closeDrawer}>
+          <View style={styles.overlay} />
+        </TouchableWithoutFeedback>
+      )}
+
+      <Animated.View style={[styles.drawerContainer, { transform: [{ translateX }] }]}>
+        <DrawerContent onClose={closeDrawer} />
+      </Animated.View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  placeholder: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#E3E3E3' },
-  placeholderText: { fontSize: 18, color: '#333' },
+  root: { flex: 1 },
+  overlay: {
+    position: 'absolute',
+    top: 0, bottom: 0, left: 0, right: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  drawerContainer: {
+    position: 'absolute',
+    top: 0, bottom: 0, left: 0,
+    width: DRAWER_WIDTH,
+    zIndex: 100,
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+  },
+  drawer: { flex: 1, backgroundColor: '#fff', paddingTop: 60, paddingHorizontal: 20 },
+  drawerTitle: { fontSize: 20, fontWeight: '700', marginBottom: 24, color: '#333' },
+  drawerItem: { paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: '#eee' },
+  drawerItemText: { fontSize: 16, color: '#333' },
 });
