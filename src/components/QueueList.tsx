@@ -51,7 +51,7 @@ export function QueueList({ queue, onRemove, onMoveUp, onMoveDown }: Props) {
                     key={item.id}
                     onPress={() => handlePress(item.id)}
                     onLongPress={() => handleLongPress(item.id)}
-                    delayLongPress={3000}
+                    delayLongPress={2000}
                     activeOpacity={0.8}>
                     <View style={[s.item, isReordering && { borderColor: color, borderWidth: 2 }]}>
                     <View style={[s.colorBar, { backgroundColor: color }]} />
