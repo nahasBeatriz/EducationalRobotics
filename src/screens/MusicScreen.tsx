@@ -90,42 +90,41 @@ export default function MusicScreen({
                 <Text style={s.clearBtnText}>Apagar Tudo</Text>
             </TouchableOpacity>
 
-            <View style={s.queueBox}>
             {musicQueue.length === 0 ? (
                 <Text style={s.emptyText}>Nenhum tom adicionado ainda</Text>
             ) : (
                 <FlatList
-                data={musicQueue}
-                keyExtractor={item => item.id}
-                scrollEnabled={false}
-                renderItem={({ item, index }) => (
-                    <View style={s.queueItem}>
-                    <View style={s.queueItemLeft}>
-                        <Text style={s.queueNote}>{item.note}</Text>
-                        <Text style={s.queueDuration}>{item.duration}s · {item.frequency}Hz</Text>
-                    </View>
-                    <View style={s.queueActions}>
-                        <TouchableOpacity
-                            style={[s.moveBtn, index === 0 && { opacity: 0.3 }]}
-                            onPress={() => onMoveUp(item.id)}
-                            disabled={index === 0}>
-                            <Text style={s.moveBtnText}>↑</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={[s.moveBtn, index === musicQueue.length - 1 && { opacity: 0.3 }]}
-                            onPress={() => onMoveDown(item.id)}
-                            disabled={index === musicQueue.length - 1}>
-                            <Text style={s.moveBtnText}>↓</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={s.removeBtn} onPress={() => onRemove(item.id)}>
-                            <Text style={s.removeBtnText}>✕</Text>
-                        </TouchableOpacity>
-                    </View>
+                    data={musicQueue}
+                    keyExtractor={item => item.id}
+                    scrollEnabled={false}
+                    contentContainerStyle={{ gap: 10 }}
+                    renderItem={({ item, index }) => (
+                    <View style={[s.queueItem, { backgroundColor: NOTE_COLORS[item.note] }]}>
+                        <View style={s.queueItemLeft}>
+                            <Text style={s.queueNote}>{item.note}</Text>
+                            <Text style={s.queueDuration}>{item.duration}s · {item.frequency}Hz</Text>
+                        </View>
+                        <View style={s.queueActions}>
+                            <TouchableOpacity
+                                style={[s.moveBtn, index === 0 && { opacity: 0.3 }]}
+                                onPress={() => onMoveUp(item.id)}
+                                disabled={index === 0}>
+                                <Text style={s.moveBtnText}>↑</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[s.moveBtn, index === musicQueue.length - 1 && { opacity: 0.3 }]}
+                                onPress={() => onMoveDown(item.id)}
+                                disabled={index === musicQueue.length - 1}>
+                                <Text style={s.moveBtnText}>↓</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={s.removeBtn} onPress={() => onRemove(item.id)}>
+                                <Text style={s.removeBtnText}>✕</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 )}
                 />
             )}
-            </View>
 
             <Text style={s.hint}>
                 A música será enviada junto com a programação de movimento.
@@ -158,9 +157,8 @@ const s = StyleSheet.create({
     addBtnText: { color: '#ffffff', fontWeight: '700', fontSize: 15 },
     clearBtn: { backgroundColor: '#cc2626', borderRadius: 14, paddingVertical: 11, alignItems: 'center' },
     clearBtnText: { color: '#ffffff', fontWeight: '700', fontSize: 14 },
-    queueBox: { backgroundColor: '#560072', borderRadius: 14, padding: 12, minHeight: 72 },
+    queueItem: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 13, paddingHorizontal: 14, borderRadius: 14 },
     emptyText: { color: '#ffffff81', fontSize: 13, textAlign: 'center', paddingVertical: 16 },
-    queueItem: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: '#560072' },
     queueItemLeft: { flex: 1 },
     queueNote: { fontSize: 15, fontWeight: '700', color: '#ffffff' },
     queueDuration: { fontSize: 12, color: '#ffffff', marginTop: 1 },
