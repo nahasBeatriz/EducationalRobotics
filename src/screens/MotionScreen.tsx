@@ -10,6 +10,7 @@ import { CommandRow } from '../components/CommandRow';
 import { QueueList } from '../components/QueueList';
 import { PreviewModal } from '../components/PreviewModal';
 import { MusicStep } from '../types';
+import { LedRow } from '../components/LedRow';
 
 type Props = {
     musicQueue: MusicStep[];
@@ -70,6 +71,8 @@ export default function MotionScreen({ musicQueue = [], onOpenDrawer }: Props) {
                     maximumTrackTintColor="#800080"
                     thumbTintColor="#800080"/>
             </View>
+
+            <LedRow onAdd={addToQueue} />
 
             {musicQueue.length > 0 && (
                 <View style={s.musicBadge}>
@@ -138,5 +141,5 @@ const s = StyleSheet.create({
     actionBtn: { flex: 1, paddingVertical: 13, borderRadius: 14, alignItems: 'center' },
     actionText: { color: '#ffffff', fontWeight: '700', fontSize: 15 },
     error: { color: '#F87171', fontSize: 13, textAlign: 'center' },
-    queueBox: { backgroundColor: '#560072', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 300 },
+    queueBox: { backgroundColor: '#560072', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 225 },
 });
