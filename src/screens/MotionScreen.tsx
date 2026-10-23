@@ -74,7 +74,7 @@ export default function MotionScreen({ musicQueue = [], onOpenDrawer }: Props) {
             {musicQueue.length > 0 && (
                 <View style={s.musicBadge}>
                     <Text style={s.musicBadgeText}>
-                        {musicQueue.length} tom{musicQueue.length > 1 ? 's' : ''} configurado{musicQueue.length > 1 ? 's' : ''}
+                        {musicQueue.length} nota{musicQueue.length > 1 ? 's' : ''} configurada{musicQueue.length > 1 ? 's' : ''}
                     </Text>
                 </View>
             )}
