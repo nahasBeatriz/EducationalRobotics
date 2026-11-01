@@ -8,11 +8,14 @@ export type CommandDef = {
 };
 
 export const CMD_COLORS: Record<string, string> = {
-    frente:   '#4CAF50',
-    tras:     '#F44336',
-    esquerda: '#2196F3',
-    direita:  '#FF9800',
-    parar:    '#9C27B0',
+    frente: '#179eb3',
+    tras: '#3477ca',
+    esquerda: '#16a581',
+    direita: '#b98c2a',
+    parar: '#be2855',
+    led_verde: '#2bb132',   
+    led_azul: '#2197ce',   
+    led_vermelho: '#d34d4d',
 };
 
 export const COMMANDS: CommandDef[] = [
