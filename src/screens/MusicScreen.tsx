@@ -192,7 +192,7 @@ const s = StyleSheet.create({
     addBtnText: { color: '#ffffff', fontWeight: '700', fontSize: 15 },
     clearBtn: { backgroundColor: '#cc2626', borderRadius: 14, paddingVertical: 11, alignItems: 'center' },
     clearBtnText: { color: '#ffffff', fontWeight: '700', fontSize: 14 },
-    queueBox: { backgroundColor: '#560072', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 300 },
+    queueBox: { backgroundColor: '#560072', borderRadius: 14, padding: 12, minHeight: 72, maxHeight: 360 },
     queueScroll: { flexGrow: 0 },
     queueList: { gap: 6 },
     empty: { padding: 16, alignItems: 'center' },
