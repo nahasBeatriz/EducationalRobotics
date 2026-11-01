@@ -42,7 +42,7 @@ export function PreviewModal({ visible, queue, onClose }: Props) {
                         {current ? (
                             <Image source={CMD_IMAGE[current.command]} style={s.cmdImage} resizeMode="contain" />
                         ) : step >= queue.length ? (
-                            <Text style={s.done}>Concluído ✓</Text>
+                            <Text style={s.done}>Concluído</Text>
                         ) : (
                             <Text style={s.waiting}>Aguardando...</Text>
                         )}
